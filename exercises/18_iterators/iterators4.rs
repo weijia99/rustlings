@@ -10,6 +10,8 @@ fn factorial(num: u64) -> u64 {
     // - additional variables
     // For an extra challenge, don't use:
     // - recursion
+    // 使用fold，第一个是初始值，第二个是闭包函数,acc是上一次的结果，x是当前的值
+    return (1..num).fold(1,|acc,x| acc*(x+1));
 }
 
 fn main() {

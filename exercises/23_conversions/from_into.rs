@@ -3,6 +3,8 @@
 // You can read more about it in the documentation:
 // https://doc.rust-lang.org/std/convert/trait.From.html
 
+
+
 #[derive(Debug)]
 struct Person {
     name: String,
@@ -34,7 +36,27 @@ impl Default for Person {
 // 5. Parse the second element from the split operation into a `u8` as the age.
 // 6. If parsing the age fails, return the default of `Person`.
 impl From<&str> for Person {
-    fn from(s: &str) -> Self {}
+    fn from(s: &str) -> Self {
+        // 1. Split the given string on the commas present in it.
+        let parts =s.split(',').collect::<Vec<&str>>();
+        if parts.len()<2||parts.len()>2{
+            Person::default()
+        }else {
+            let name = parts[0].to_string();
+            if name.len()==0{
+               return Person::default();
+            }
+            let age = parts[1].parse::<u8>();
+            if let Ok(age) = age{
+            Person{name:name,age:age}
+
+            }else{
+            Person::default()
+
+            }
+        }
+
+    }
 }
 
 fn main() {
